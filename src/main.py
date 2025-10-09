@@ -32,7 +32,7 @@ def setup_logging():
     )
     
     logger = logging.getLogger(__name__)
-    logger.info("🎵 Starting MusicMoodBot...")
+    logger.info("Starting MusicMoodBot...")
     return logger
 
 def main():

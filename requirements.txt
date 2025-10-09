@@ -20,7 +20,7 @@ python-dotenv==1.0.0
 pyyaml==6.0.1
 
 # Database (for storing user preferences and history)
-sqlite3
+# sqlite3 is built into Python
 
 # Development and testing
 pytest==7.4.3

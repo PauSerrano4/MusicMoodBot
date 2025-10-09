@@ -86,8 +86,11 @@ class SpotifyClient:
         mood_features = self._get_mood_audio_features(mood)
         
         try:
+            # Add seed genres - Spotify requires at least one seed
+            seed_genres = ['pop', 'rock', 'electronic', 'indie', 'alternative']
             recommendations = self.sp.recommendations(
                 limit=limit,
+                seed_genres=seed_genres[:1],  # Use just one seed genre
                 **mood_features
             )
             
@@ -109,7 +112,34 @@ class SpotifyClient:
             
         except Exception as e:
             logger.error(f"Error getting mood recommendations: {e}")
-            return []
+            # Fallback: search for mood-related tracks instead
+            logger.info(f"Falling back to search for mood: {mood}")
+            return self._fallback_search_by_mood(mood, limit)
+    
+    def _fallback_search_by_mood(self, mood: str, limit: int = 10) -> List[Dict[str, Any]]:
+        """
+        Fallback method: search for tracks using mood keywords.
+        
+        Args:
+            mood: User's mood
+            limit: Maximum number of results
+            
+        Returns:
+            List of tracks from search results
+        """
+        # Define search terms for each mood
+        mood_search_terms = {
+            'happy': 'upbeat happy energetic positive',
+            'sad': 'sad melancholy emotional ballad',
+            'energetic': 'energetic pump up workout motivational',
+            'calm': 'chill relaxing ambient peaceful',
+            'romantic': 'romantic love ballad intimate',
+            'focused': 'instrumental focus study ambient'
+        }
+        
+        search_query = mood_search_terms.get(mood.lower(), 'popular music')
+        logger.info(f"Searching for: {search_query}")
+        return self.search_tracks(search_query, limit)
     
     def _get_mood_audio_features(self, mood: str) -> Dict[str, float]:
         """
