@@ -1,132 +1,211 @@
 # 🎵 MusicMoodBot
 
-Un bot intel·ligent que recomana cançons segons el teu estat d'ànim i preferències musicals. Integra IA amb l'API de Spotify per oferir recomanacions personalitzades.
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
+[![Discord.py](https://img.shields.io/badge/discord.py-2.3.2-blue.svg)](https://discordpy.readthedocs.io/)
+[![Spotify API](https://img.shields.io/badge/Spotify-API-green.svg)](https://developer.spotify.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## 🌟 Per què és especial?
+An intelligent Discord bot that recommends music based on your mood using natural language processing and the Spotify API. Simply tell the bot how you're feeling, and it will curate the perfect tracks to match your vibe!
 
-- **Impacte brutal, temps baix**: Projecte perfecte per demostrar habilitats tècniques
-- **Integració real**: Combina bots, APIs i intel·ligència artificial
-- **Altament compartible**: Ideal per LinkedIn i portfoli professional
-- **Experiència d'usuari enganxadora**: Tothom pot provar-ho i gaudir-ne
+![MusicMoodBot Demo](https://img.shields.io/badge/Status-Live%20Demo-success)
 
-## 🗺️ Roadmap
+## ✨ Features
 
-### Setmana 1: Fonaments
-- [x] Configurar estructura del projecte
-- [ ] Configurar bot (Telegram/Discord)
-- [ ] Connectar API de Spotify
-- [ ] Implementar autenticació bàsica
+- 🤖 **Natural Language Processing**: Understands emotions from casual conversation
+- 🎵 **Spotify Integration**: Real-time music search and recommendations
+- 🎯 **Mood Detection**: Recognizes 6+ emotional states (happy, sad, energetic, calm, romantic, focused)
+- 💬 **Rich Discord Experience**: Beautiful embeds with track previews and Spotify links
+- ⚡ **Dual Interface**: Both slash commands and natural conversation
+- 🔄 **Intelligent Fallback**: Robust error handling with alternative search methods
+- 🏗️ **Extensible Architecture**: Clean, modular design ready for additional platforms
 
-### Setmana 2: Sistema de Preguntes (MVP)
-- [ ] Sistema de preguntes interactives ("com et sents?", "què vols escoltar?")
-- [ ] Lògica bàsica de recomanacions
-- [ ] Base de dades per preferències d'usuari
-- [ ] **MVP llest per compartir!** 🚀
+## 🚀 Demo & Usage
 
-### Setmana 3: Millores Avançades
-- [ ] Playlists per mood automàtiques
-- [ ] Recomanacions per gènere
-- [ ] Sistema d'artistes favorits
-- [ ] Interfície millorada
+### Commands
+```bash
+# Get mood-based recommendations
+!mood happy          # Upbeat, energetic tracks
+!mood sad            # Emotional, melancholic songs
+!mood energetic      # Workout and pump-up music
+!mood calm           # Chill, relaxing vibes
 
-### Setmana 4: IA Avançada (Bonus)
-- [ ] Anàlisi de sentiment de text
-- [ ] Detecció de mood automàtica
-- [ ] Processament de veu (opcional)
-- [ ] Machine learning per millors recomanacions
+# Search for specific tracks
+!search bohemian rhapsody queen
 
-**Temps vs Impacte: ⏳⏳ (baix) → 🌟🌟🌟🌟🌟 (altíssim)**
+# Get help
+!help
+```
 
-## 🚀 Configuració Ràpida
+### Natural Language (Just chat!)
+```
+"I'm feeling really sad today"
+"Need some energetic music for my workout"
+"Looking for something romantic"
+"I want to focus and study"
+```
 
-### Prerequisits
+### Bot Response Example
+🎯 **Happy Vibes for You!**
+
+1. **Good as Hell** by Lizzo
+   👤 Lizzo
+   💿 Cuz I Love You
+   📊 85/100
+   [🔗 Spotify](https://spotify.com) | [🎧 Preview](https://preview.com)
+
+## 🏗️ Architecture
+
+**Clean, Production-Ready Design:**
+- **Modular Bot System**: Extensible base classes for multiple platforms
+- **Intelligent Mood Mapping**: NLP-powered emotion detection
+- **Robust Error Handling**: Graceful degradation with fallback systems
+- **Async/Await Pattern**: High-performance Discord.py implementation
+- **Environment-Based Config**: Secure API key management
+
+## 🚀 Quick Start
+
+### Prerequisites
 - Python 3.8+
-- Compte de Spotify Developer
-- Bot de Telegram o Discord
+- Discord Developer Account
+- Spotify Developer Account
 
-### Instal·lació
+### Installation
 
-1. **Clona el repositori**
+1. **Clone the repository**
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/yourusername/music-mood-bot.git
    cd music-mood-bot
    ```
 
-2. **Crea un entorn virtual**
+2. **Create virtual environment**
    ```bash
    python -m venv venv
+   
    # Windows
    venv\Scripts\activate
+   
    # Linux/Mac
    source venv/bin/activate
    ```
 
-3. **Instal·la dependències**
+3. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Configura variables d'entorn**
+4. **Set up API credentials**
    ```bash
    cp .env.template .env
-   # Edita .env amb les teves claus API
+   # Edit .env with your actual API keys (see setup guide below)
    ```
 
-5. **Executa el bot**
+5. **Run the bot**
    ```bash
    python src/main.py
    ```
 
-## 🔧 Configuració de APIs
+## 🔧 API Setup Guide
 
-### Spotify API
-1. Ves a [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)
-2. Crea una nova aplicació
-3. Copia Client ID i Client Secret a `.env`
+### Discord Bot Setup
+1. Go to [Discord Developer Portal](https://discord.com/developers/applications)
+2. Create a new application
+3. Go to "Bot" section and create a bot
+4. **Enable "Message Content Intent"** (required!)
+5. Copy the bot token to your `.env` file:
+   ```
+   DISCORD_BOT_TOKEN=your_discord_bot_token_here
+   ```
+6. Generate an invite link with proper permissions:
+   - Go to OAuth2 → URL Generator
+   - Select scopes: `bot`, `applications.commands`
+   - Select permissions: Send Messages, Embed Links, Read Message History
 
-### Telegram Bot
-1. Parla amb [@BotFather](https://t.me/botfather)
-2. Crea un nou bot amb `/newbot`
-3. Copia el token a `.env`
+### Spotify API Setup
+1. Go to [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)
+2. Create a new app
+3. Set redirect URI to: `http://localhost:8888/callback`
+4. Copy credentials to your `.env` file:
+   ```
+   SPOTIFY_CLIENT_ID=your_spotify_client_id_here
+   SPOTIFY_CLIENT_SECRET=your_spotify_client_secret_here
+   ```
 
-### Discord Bot (opcional)
-1. Ves a [Discord Developer Portal](https://discord.com/developers/applications)
-2. Crea una nova aplicació
-3. Crea un bot i copia el token
-
-## 📁 Estructura del Projecte
+## 📁 Project Structure
 
 ```
 music-mood-bot/
-├── src/                    # Codi font principal
-│   ├── bot/               # Lògica del bot
-│   ├── spotify/           # Integració Spotify
-│   ├── ai/                # Funcions d'IA
-│   └── database/          # Gestió de base de dades
-├── config/                # Configuracions
-├── docs/                  # Documentació
-├── tests/                 # Tests automatitzats
-├── assets/                # Recursos estàtics
+├── src/
+│   ├── bot/
+│   │   ├── base_bot.py        # Abstract base class for bots
+│   │   ├── discord_bot.py     # Discord implementation
+│   │   └── bot_manager.py     # Multi-platform orchestrator
+│   ├── spotify/
+│   │   └── spotify_client.py  # Spotify API integration
+│   ├── config/
+│   │   └── settings.py        # Configuration management
+│   └── main.py               # Application entry point
+├── requirements.txt           # Python dependencies
+├── .env.template             # Environment variables template
+├── WARP.md                   # Development guide
 └── README.md
 ```
 
-## 🤝 Contribucions
+## 💻 Technical Details
 
-Les contribucions són benvingudes! Obre un issue o envia un pull request.
+### Core Technologies
+- **Python 3.8+**: Modern async/await patterns
+- **Discord.py 2.3.2**: Advanced Discord bot framework
+- **Spotipy 2.23.0**: Official Spotify Web API wrapper
+- **OpenAI API**: Ready for advanced NLP features
 
-## 📄 Llicència
+### Key Features
+- **Mood Detection Algorithm**: Maps natural language to 6 emotional states
+- **Intelligent Search Fallback**: Switches to keyword search when recommendations fail
+- **Rich Discord Embeds**: Professional UI with track previews and links
+- **Async Architecture**: Non-blocking operations for optimal performance
+- **Multi-Platform Ready**: Extensible design for Telegram, Slack, etc.
 
-MIT License - Consulta [LICENSE](LICENSE) per més detalls.
+## 📚 Development
 
-## 🎯 Objectius d'Aprenentatge
+This project includes comprehensive development documentation:
 
-- Desenvolupament de bots
-- Integració d'APIs externes
-- Intel·ligència artificial aplicada
-- Gestió de bases de dades
-- Arquitectura de software
-- DevOps i desplegament
+- **WARP.md**: Complete development guide with commands and architecture
+- **Modular Design**: Easy to extend with new features
+- **Error Handling**: Robust fallback systems
+- **Logging**: Comprehensive logging for debugging
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📝 License
+
+MIT License - see [LICENSE](LICENSE) for details.
+
+## 🎆 Skills Demonstrated
+
+- **Bot Development**: Discord.py with advanced features
+- **API Integration**: RESTful APIs with proper error handling
+- **Natural Language Processing**: Emotion detection from text
+- **Software Architecture**: Clean, extensible, production-ready code
+- **Async Programming**: High-performance concurrent operations
+- **DevOps**: Environment management, configuration, deployment
+
+## 🔗 Links
+
+- [Discord Developer Portal](https://discord.com/developers/applications)
+- [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)
+- [Discord.py Documentation](https://discordpy.readthedocs.io/)
+- [Spotipy Documentation](https://spotipy.readthedocs.io/)
 
 ---
 
-**Fet amb ❤️ per demostrar habilitats tècniques i crear algo útil!**
+**Built with ❤️ to showcase modern software development practices and create something genuinely useful!**
+
+*Made by [Your Name] - [Your LinkedIn] - [Your Portfolio]*
