@@ -208,4 +208,4 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 **Built with ❤️ to showcase modern software development practices and create something genuinely useful!**
 
-*Made by [Your Name] - [Your LinkedIn] - [Your Portfolio]*
+*Made by Pau Serrano Sanz*
